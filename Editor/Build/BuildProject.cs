@@ -337,6 +337,7 @@ namespace SuperUnityBuild.BuildTool
 
             PerformPreBuild(out DateTime buildTime);
 
+            Debug.LogFormat("Passed in configs: {0}", buildConfigs.Length);
             for (int i = 0; i < buildConfigs.Length; i++)
             {
                 string configKey = buildConfigs[i];
@@ -387,7 +388,7 @@ namespace SuperUnityBuild.BuildTool
                     true, null));
 
             // Open output folder if option is enabled.
-            if (BuildSettings.basicSettings.openFolderPostBuild)
+            if (BuildSettings.basicSettings.openFolderPostBuild && AssetDatabase.IsValidFolder(BuildSettings.basicSettings.baseBuildFolder))
             {
                 System.Diagnostics.Process.Start(BuildSettings.basicSettings.baseBuildFolder);
             }
