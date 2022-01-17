@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
@@ -44,7 +44,13 @@ namespace SuperUnityBuild.BuildTool
 
         protected void OnEnable()
         {
-            GUIContent icon = EditorGUIUtility.IconContent("Packages/com.github.superunitybuild.buildtool/Editor/Assets/Textures/icon.png");
+            string packageIcon = "Packages/com.github.superunitybuild.buildtool/Editor/Assets/Textures/icon.png";
+
+            // Todo: make this use find textures buildtool textures folder instead
+            string projectIcon = "Assets/3PP/buildtool/Editor/Assets/Textures/icon.png";
+            string textureIcon = AssetDatabase.IsValidFolder(packageIcon) ? packageIcon : projectIcon;
+
+            GUIContent icon = EditorGUIUtility.IconContent(textureIcon);
             GUIContent title = new GUIContent("SuperUnityBuild", icon.image);
             titleContent = title;
 
